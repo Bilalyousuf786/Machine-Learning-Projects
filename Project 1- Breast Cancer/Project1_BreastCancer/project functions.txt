@@ -1,0 +1,53 @@
+Preporcessing
+
+breast.head()
+breast.tail()
+breast.['Diagnosis'].value_counts()
+breast.shape
+breast.isnull().sum()
+breast.duplicated().sum()
+breast.info()
+breast.corr()
+breast.drop('Unnamed: 32', axis=1, inplace=True)
+breast.describe()
+breast['diagnosis'].map({"M":0, "B":1})
+breasts['diagnosis'].value_counts()
+
+Spliting Data into Training and Testing
+x = breast.drop('diagnosis', axis=1)
+y = breast['diagnosis']
+x.shape() 
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size = 0.2, random = 42)
+x_train.shape  ==> 455,31
+x_test.shape   ==> 114, 41
+
+Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+sc.fit(x_train)
+x_train = sc.transform(x_train)
+x_test = sc.transform(x_test)
+
+Model Training
+from sklearn.linear_model import LogisticRegression
+lg = LogisticRegression()
+lg.fit(x_train, y_train)
+y_pred = lg.predict(x_test)
+
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test, y_pred)
+
+Prediction System
+input_text()
+np_df = np.asarray(input_text)
+predictiont = lg.predict(np_df.reshape(1,-1))
+
+if predicgtiont[0]  == 1:
+    print('Cancerous')
+else
+    print('Not Cancerous')
+
+
+
